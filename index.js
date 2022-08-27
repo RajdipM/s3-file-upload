@@ -19,7 +19,7 @@ app.post('/upload/:fileName', rawBodyBuffer, async(req, res) => {
         
         const extension = ((contentType.match(/\/([a-zA-Z0-9]+)/) || [])[1]).toLowerCase();
         if(allowedFileTypes.indexOf(extension) === -1) {
-            return res.status(400).send('Invalid file type');
+            throw new Error('Invalid file type')
         }
         let { fileName } = req.params;
         // extension from file Name
